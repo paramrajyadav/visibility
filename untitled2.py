@@ -55,12 +55,12 @@ class predict():
     
     def modal_selection(self):
         
-        folder_path = os.getcwd() + "\Kmeans"
+        #folder_path = os.getcwd() + "\Kmeans"
         
-        file_path = os.path.join(folder_path, "cluster_modal.pkl")
+        #file_path = os.path.join(folder_path, "cluster_modal.pkl")
         #st.write(file_path)
         #st.write(r"C:\Users\Lakshita\Desktop\f1\kmeans\cluster_modal.pkl")
-        file = open(file_path, 'rb')
+        file = open("kmeans.pkl", 'rb')
         kmeans=pickle.load(file)
         self.y=kmeans.predict(self.df)
         self.y = int(self.y)
