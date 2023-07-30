@@ -70,13 +70,13 @@ class predict():
         file.close()
 
     def modal_predict(self):
-        folder_path = os.getcwd() + "\standard scaler for cluster "+str(self.y)
+        #folder_path = os.getcwd() + "\standard scaler for cluster "+str(self.y)
         #st.write(folder_path)
     
-        file_path = os.path.join(folder_path, "cluster_modal.pkl")
+        #file_path = os.path.join(folder_path, "cluster_modal.pkl")
         #st.write(file_path)
         #st.write(r"C:\Users\Lakshita\Desktop\f1\standard scaler for cluster 1\cluster_modal.pkl")
-        file = open(file_path, 'rb')
+        file = open("standard_scaler_"+str(self.y), 'rb')
         sc=pickle.load(file)
         self.df2=sc.transform(self.df)
         
