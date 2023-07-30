@@ -46,7 +46,7 @@ if selected=="Train":
         train1.clusterring()
        # train1.folder_to_modal()
         train1.assign_cluster()
-        train1.modal_build()
+        #train1.modal_build()
         
 else:
     st.write("Enter the data in the fields")

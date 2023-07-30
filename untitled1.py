@@ -126,14 +126,20 @@ class train():
         
         
         
-        folder_path = os.getcwd() + "\kmeans"  # Use forward slash (/) for file paths in Python
-        st.write(folder_path)
+        #folder_path = os.getcwd() + "\kmeans"  # Use forward slash (/) for file paths in Python
+        #st.write(folder_path)
         
-        if os.path.exists(folder_path):
-            shutil.rmtree(folder_path)
-        os.mkdir(folder_path)
+        file_path = "cluster_model_"+"self.s"+".pkl"
+
+    # Pickle the model and save it to the file
         
-        file_path = os.path.join(folder_path, "cluster_modal.pkl")
+        
+        if os.path.exists(file_path):
+            shutil.rmtree(file_path)
+       # with open(file_path, 'wb') as file:
+        #    pickle.dump(kmeans, file)
+        
+        #file_path = os.path.join(folder_path, "cluster_modal.pkl")
         file = open(file_path, 'wb')
         pickle.dump(kmeans, file)
         file.close()
