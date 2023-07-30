@@ -32,7 +32,7 @@ from untitled2 import predict
 
 
 
-st.write(os.chdir(r"C:\Users\Lakshita\Desktop\f1"))
+#st.write(os.chdir(r"C:\Users\Lakshita\Desktop\f1"))
 st.write(os.getcwd())
 
 with st.sidebar:
