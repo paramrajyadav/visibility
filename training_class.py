@@ -17,7 +17,7 @@ from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
 from sklearn.model_selection import train_test_split
 #import matplotlib as mtp
-from sklearn.model_selection import GridSearchCV
+#from sklearn.model_selection import GridSearchCV
 from sklearn.metrics  import r2_score
 from sklearn.tree import DecisionTreeRegressor
 #import matplotlib.pyplot as plt   
@@ -49,7 +49,7 @@ class train():
         self.xgb1 = XGBRegressor()
         self.clf = RandomForestRegressor()
     def train_data(self):
-        st.write(os.getcwd())
+        #st.write(os.getcwd())
         ds=pd.read_csv("Visibility_data.csv")
         ds=ds.drop(['DATE','Precip','WETBULBTEMPF','DewPointTempF','StationPressure'],axis=1)
         self.X = ds.drop(['VISIBILITY'],axis=1)
@@ -101,16 +101,16 @@ class train():
         
         kn = KneeLocator(range(1, 11), wcss, curve='convex', direction='decreasing')
         self.s=kn.knee
-        st.write(self.s)
+        #st.write(self.s)
         return self.s
         
      
     def folder_to_modal(self):
         #st.write("2")
         original_path=os.getcwd()
-        st.write("11")
+        #st.write("11")
         for i in range(self.s):
-            st.write(i)
+            #st.write(i)
             folder_path=os.getcwd() + "\modal for cluster " + str(i)
             if os.path.exists(folder_path):
                 shutil.rmtree(folder_path)
@@ -129,8 +129,8 @@ class train():
         
         #folder_path = os.getcwd() + "\kmeans"  # Use forward slash (/) for file paths in Python
         #st.write(folder_path)
-        st.write(self.s)
-        st.write(str(self.s))
+        #st.write(self.s)
+        #st.write(str(self.s))
         
         file_path = "kmeans.pkl"
         #st.write(file_path)
@@ -277,7 +277,7 @@ class train():
             X_test = scaler.transform(self.X_test)
             
             folder_path = "standard scaler for cluster "+str(i)+".pkl"  # Use forward slash (/) for file paths in Python
-            st.write(folder_path)
+            #st.write(folder_path)
             
             if os.path.exists(folder_path):
                 os.remove(folder_path)
@@ -296,7 +296,7 @@ class train():
             self.error.append(self.randomForest_error)
             self.error.append(self.xgb_error)
             self.error.append(self.dt_error)
-            st.write(self.error)
+            #st.write(self.error)
     
             folder_path2="modal for cluster " + str(i)+".pkl"
             #st.write(1)
@@ -307,7 +307,7 @@ class train():
             #st.write(folder_path2)
     
             if self.randomForest_error < self.xgb_error and self.randomForest_error < self.dt_error:
-                st.write("rfrf")
+                #st.write("rfrf")
                 self.model[i]=rfrf
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
@@ -315,8 +315,8 @@ class train():
     
             elif self.xgb_error < self.dt_error and self.xgb_error < self.randomForest_error:
                 self.model[i]=xgbxgb
-                st.write(self.model[i])
-                st.write("xgb")
+                #st.write(self.model[i])
+                #st.write("xgb")
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
                     pickle.dump(xgbxgb, file)
@@ -324,15 +324,15 @@ class train():
             else:
              #   st.write("78")
                 self.model[i]=dtdt
-                st.write("dtdt")
+                #st.write("dtdt")
                 
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
                     pickle.dump(dtdt, file)
                 
             
-        st.write(self.error)
-        st.write(self.model)
+        #st.write(self.error)
+        #st.write(self.model)
 
 
 
