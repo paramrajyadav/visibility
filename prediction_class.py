@@ -73,10 +73,10 @@ class predict():
         #folder_path = os.getcwd() + "\standard scaler for cluster "+str(self.y)
         #st.write(folder_path)
     
-        #file_path = os.path.join(folder_path, "cluster_modal.pkl")
+        #file_path = "standard scaler for cluster "+str(i)+".pkl"
         #st.write(file_path)
         #st.write(r"C:\Users\Lakshita\Desktop\f1\standard scaler for cluster 1\cluster_modal.pkl")
-        file = open("standard_scaler_"+str(self.y)+".pkl", 'rb')
+        file = open("standard scaler for cluster "+str(self.y)+".pkl", 'rb')
         sc=pickle.load(file)
         file.close()
         self.df2=sc.transform(self.df)
@@ -89,7 +89,7 @@ class predict():
         #file_path = os.path.join(folder_path, "modal.pkl")
         #st.write(file_path)
         #st.write(r"C:\Users\Lakshita\Desktop\f1\modal for cluster 1\modal.pkl")
-        with open("modal_"+str(self.y)+".pkl", 'rb') as file:
+        with open("modal for cluster "+str(self.y)+".pkl", 'rb') as file:
             #content = fil"C:\Users\Lakshita\Desktop\f1\modal for cluster 1\modal.pkl"e.read()
             #st.write(content)
 
@@ -99,5 +99,4 @@ class predict():
         
         st.write(self.Y)
 
-        
         
