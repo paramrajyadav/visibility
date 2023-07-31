@@ -278,7 +278,7 @@ class train():
             X_test = scaler.transform(self.X_test)
             
             folder_path = "standard scaler for cluster "+str(i)+".pkl"  # Use forward slash (/) for file paths in Python
-            st.write(folder_path+"created")
+            st.write(folder_path+" created")
             
             if os.path.exists(folder_path):
                 os.remove(folder_path)
@@ -305,7 +305,7 @@ class train():
                 os.remove(folder_path2)
             #os.mkdir(folder_path2)
             
-            st.write("training for cluster"+str(i))
+            st.write("training for cluster "+str(i))
     
             if self.randomForest_error < self.xgb_error and self.randomForest_error < self.dt_error:
                 st.write("training on random forest started")
