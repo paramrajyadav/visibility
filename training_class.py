@@ -49,6 +49,7 @@ class train():
         self.xgb1 = XGBRegressor()
         self.clf = RandomForestRegressor()
     def train_data(self):
+        st.write(os.getcwd())
         ds=pd.read_csv("Visibility_data.csv")
         ds=ds.drop(['DATE','Precip','WETBULBTEMPF','DewPointTempF','StationPressure'],axis=1)
         self.X = ds.drop(['VISIBILITY'],axis=1)
@@ -128,14 +129,17 @@ class train():
         
         #folder_path = os.getcwd() + "\kmeans"  # Use forward slash (/) for file paths in Python
         #st.write(folder_path)
+        st.write(self.s)
+        st.write(str(self.s))
         
-        file_path = "cluster_model_"+"self.s"+".pkl"
+        file_path = "kmeans.pkl"
+        #st.write(file_path)
 
     # Pickle the model and save it to the file
         
         
         if os.path.exists(file_path):
-            shutil.rmtree(file_path)
+            os.remove(file_path)
        # with open(file_path, 'wb') as file:
         #    pickle.dump(kmeans, file)
         
@@ -272,15 +276,15 @@ class train():
             X_train = scaler.fit_transform(self.X_train)
             X_test = scaler.transform(self.X_test)
             
-            folder_path = os.getcwd() + "\standard scaler for cluster "+str(i)  # Use forward slash (/) for file paths in Python
+            folder_path = "standard scaler for cluster "+str(i)+".pkl"  # Use forward slash (/) for file paths in Python
             st.write(folder_path)
             
             if os.path.exists(folder_path):
-                shutil.rmtree(folder_path)
-            os.mkdir(folder_path)
+                os.remove(folder_path)
+            #os.mkdir(folder_path)
             
-            file_path = os.path.join(folder_path, "cluster_modal.pkl")
-            file = open(file_path, 'wb')
+            #file_path = os.path.join(folder_path, "cluster_modal.pkl")
+            file = open(folder_path, 'wb')
             pickle.dump(scaler, file)
             file.close()
                    
@@ -294,27 +298,27 @@ class train():
             self.error.append(self.dt_error)
             st.write(self.error)
     
-            folder_path2=os.getcwd() + "\modal for cluster " + str(i)
-            st.write(1)
+            folder_path2="modal for cluster " + str(i)+".pkl"
+            #st.write(1)
             if os.path.exists(folder_path2):
-                shutil.rmtree(folder_path2)
-            os.mkdir(folder_path2)
+                os.remove(folder_path2)
+            #os.mkdir(folder_path2)
             
-            st.write(folder_path2)
+            #st.write(folder_path2)
     
             if self.randomForest_error < self.xgb_error and self.randomForest_error < self.dt_error:
                 st.write("rfrf")
                 self.model[i]=rfrf
-                file_path = os.path.join(folder_path2, "modal.pkl")
-                with open(file_path, 'wb') as file:
+                #file_path = os.path.join(folder_path2, "modal.pkl")
+                with open(folder_path2, 'wb') as file:
                     pickle.dump(rfrf, file)
     
             elif self.xgb_error < self.dt_error and self.xgb_error < self.randomForest_error:
                 self.model[i]=xgbxgb
                 st.write(self.model[i])
                 st.write("xgb")
-                file_path = os.path.join(folder_path2, "modal.pkl")
-                with open(file_path, 'wb') as file:
+                #file_path = os.path.join(folder_path2, "modal.pkl")
+                with open(folder_path2, 'wb') as file:
                     pickle.dump(xgbxgb, file)
               #  st.write("ok")
             else:
@@ -322,8 +326,8 @@ class train():
                 self.model[i]=dtdt
                 st.write("dtdt")
                 
-                file_path = os.path.join(folder_path2, "modal.pkl")
-                with open(file_path, 'wb') as file:
+                #file_path = os.path.join(folder_path2, "modal.pkl")
+                with open(folder_path2, 'wb') as file:
                     pickle.dump(dtdt, file)
                 
             

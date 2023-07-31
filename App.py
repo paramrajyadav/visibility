@@ -27,8 +27,8 @@ Created on Fri Jul 28 12:20:38 2023
 import streamlit as st
 import os
 from streamlit_option_menu import option_menu
-from untitled1 import train
-from untitled2 import predict
+from training_class import train
+from prediction_class import predict
 
 
 
@@ -46,7 +46,7 @@ if selected=="Train":
         train1.clusterring()
        # train1.folder_to_modal()
         train1.assign_cluster()
-        #train1.modal_build()
+        train1.modal_build()
         
 else:
     st.write("Enter the data in the fields")
