@@ -288,27 +288,35 @@ class train():
             file = open(folder_path, 'wb')
             pickle.dump(scaler, file)
             file.close()
-                   
+            
+            st.write("training for cluster "+str(i))
+            
+            st.write("decision tree modal training begins")      
             dtdt=self.decession_tree_()
+            st.write("decision tree modal training ends")
+            st.write("XGBoost modal training begins") 
             xgbxgb=self.xg_boost_()
+            st.write("XGBoost modal training ends")
+            st.write("Random forest modal training begins") 
     
             rfrf=self.randomforest_()
+            st.write("Random forest modal training ends") 
         
             self.error.append(self.randomForest_error)
             self.error.append(self.xgb_error)
             self.error.append(self.dt_error)
             #st.write(self.error)
     
-            folder_path2="modal for cluster " + str(i)+".pkl"
-            #st.write(1)
+            
+            folder_path2 = "modal for cluster "+str(i)+".pkl"
             if os.path.exists(folder_path2):
                 os.remove(folder_path2)
             #os.mkdir(folder_path2)
             
-            st.write("training for cluster "+str(i))
+            
     
             if self.randomForest_error < self.xgb_error and self.randomForest_error < self.dt_error:
-                st.write("training on random forest started")
+                st.write("Random forest selected for the cluster"+str(i))
                 self.model[i]=rfrf
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
@@ -317,7 +325,7 @@ class train():
             elif self.xgb_error < self.dt_error and self.xgb_error < self.randomForest_error:
                 self.model[i]=xgbxgb
                 #st.write(self.model[i])
-                st.write("training on xgboost started")
+                st.write("XGBoost selected for cluster"+str(i))
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
                     pickle.dump(xgbxgb, file)
@@ -325,7 +333,7 @@ class train():
             else:
              #   st.write("78")
                 self.model[i]=dtdt
-                st.write("training on decision tree started")
+                st.write("Decision tree selected for the cluster"+str(i))
                 
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
