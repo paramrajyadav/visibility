@@ -263,6 +263,7 @@ class train():
     
     def modal_build(self):
         #model={}
+        st.write("Modal traing Started")
         list_of_clusters=self.X['Cluster'].unique()    
         for i in list_of_clusters:
         
@@ -277,7 +278,7 @@ class train():
             X_test = scaler.transform(self.X_test)
             
             folder_path = "standard scaler for cluster "+str(i)+".pkl"  # Use forward slash (/) for file paths in Python
-            #st.write(folder_path)
+            st.write(folder_path+"created")
             
             if os.path.exists(folder_path):
                 os.remove(folder_path)
@@ -304,10 +305,10 @@ class train():
                 os.remove(folder_path2)
             #os.mkdir(folder_path2)
             
-            #st.write(folder_path2)
+            st.write("training for cluster"+str(i))
     
             if self.randomForest_error < self.xgb_error and self.randomForest_error < self.dt_error:
-                #st.write("rfrf")
+                st.write("training on random forest started")
                 self.model[i]=rfrf
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
@@ -316,7 +317,7 @@ class train():
             elif self.xgb_error < self.dt_error and self.xgb_error < self.randomForest_error:
                 self.model[i]=xgbxgb
                 #st.write(self.model[i])
-                #st.write("xgb")
+                st.write("training on xgboost started")
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
                     pickle.dump(xgbxgb, file)
@@ -324,7 +325,7 @@ class train():
             else:
              #   st.write("78")
                 self.model[i]=dtdt
-                #st.write("dtdt")
+                st.write("training on decision tree started")
                 
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
