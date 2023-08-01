@@ -264,8 +264,12 @@ class train():
     def modal_build(self):
         #model={}
         st.write("Modal traing Started")
-        list_of_clusters=self.X['Cluster'].unique()    
+        list_of_clusters=self.X['Cluster'].unique() 
+        sum=0
+        
         for i in list_of_clusters:
+            sum=sum+1
+            st.write("Modal training for cluster " + str(sum) +" of " +str(self.s) + " started")
         
             cluster_data=self.X[self.X['Cluster']==i]
             cluster_data=cluster_data.drop("Cluster",axis=1)
@@ -316,7 +320,7 @@ class train():
             
     
             if self.randomForest_error < self.xgb_error and self.randomForest_error < self.dt_error:
-                st.write("Random forest selected for the cluster"+str(i))
+                st.write("Random forest selected for the cluster "+str(i))
                 self.model[i]=rfrf
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
@@ -325,7 +329,7 @@ class train():
             elif self.xgb_error < self.dt_error and self.xgb_error < self.randomForest_error:
                 self.model[i]=xgbxgb
                 #st.write(self.model[i])
-                st.write("XGBoost selected for cluster"+str(i))
+                st.write("XGBoost selected for cluster "+str(i))
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
                     pickle.dump(xgbxgb, file)
@@ -333,14 +337,14 @@ class train():
             else:
              #   st.write("78")
                 self.model[i]=dtdt
-                st.write("Decision tree selected for the cluster"+str(i))
+                st.write("Decision tree selected for the cluster "+str(i))
                 
                 #file_path = os.path.join(folder_path2, "modal.pkl")
                 with open(folder_path2, 'wb') as file:
                     pickle.dump(dtdt, file)
                 
             
-        #st.write(self.error)
+        st.write("Modal training completed")
         #st.write(self.model)
 
 
