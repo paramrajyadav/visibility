@@ -36,7 +36,7 @@ from prediction_class import predict
 
 #st.write(os.chdir(r"C:\Users\Lakshita\Desktop\f1"))
 #st.write(os.getcwd())
-st.markdown('### Visibility prediction AI Modal ')
+st.markdown('### Visibility prediction AI Modal1 ')
 with st.sidebar:
     selected = option_menu("Choose an Option", ["Train", 'Predict'], 
         icons=['house', 'gear'], menu_icon="cast", default_index=1)
