@@ -22,5 +22,5 @@ COPY . /app/
 EXPOSE 8501
 
 # Command to run both the Python script and Streamlit app using do
-CMD ["streamlit", "run", "app.py"]
+CMD ["streamlit", "run", "App.py"]
 #CMD python App.py & streamlit run --server.port 8501 App.py
