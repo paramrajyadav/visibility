@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . /app/
 
 # Expose the port that your application will listen on
-EXPOSE 8051
+EXPOSE 8080
 
 # Command to run both the Python script and Streamlit app using do
-CMD python App.py & streamlit run --server.port 8051 App.py
+CMD python App.py & streamlit run --server.port 8080 App.py
