@@ -21,6 +21,7 @@ COPY . /app/
 # Expose the port that your application will listen on
 EXPOSE 8501
 
+
 # Command to run both the Python script and Streamlit app using do
 CMD ["streamlit", "run", "App.py"]
 #CMD python App.py & streamlit run --server.port 8501 App.py
