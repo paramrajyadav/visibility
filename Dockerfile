@@ -1,27 +1,17 @@
-FROM python:3.8-slim
+FROM python:3.8-slim-buster
 
-RUN apt update -y && apt install awscli -y
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the requirements file into the container at /app
-COPY requirements.txt /app/
-
-RUN pip install --upgrade pip
-
-
-
-# Install any needed packages specified in requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the current directory contents into the container at /app
-COPY . /app/
-
-# Expose the port that your application will listen on
 EXPOSE 8501
 
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    software-properties-common \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-# Command to run both the Python script and Streamlit app using do
-CMD ["streamlit", "run", "App.py"]
-#CMD python App.py & streamlit run --server.port 8501 App.py
+WORKDIR /app
+
+COPY . /app
+
+RUN pip3 install -r requirements.txt
+
+ENTRYPOINT ["streamlit", "run", "App.py", "--server.port=8501", "--server.address=0.0.0.0"]
