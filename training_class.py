@@ -277,10 +277,7 @@ class train():
             cluster_data2=cluster_data_2.drop("Cluster",axis=1)# filter the data for one cluster
             self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(cluster_data, cluster_data_2, test_size=0.2, random_state=42)
     
-            scaler = StandardScaler()
-            X_train = scaler.fit_transform(self.X_train)
-            X_test = scaler.transform(self.X_test)
-            
+                       
             folder_path = "standard scaler for cluster "+str(i)+".pkl"  # Use forward slash (/) for file paths in Python
             st.write(folder_path+" created")
             
